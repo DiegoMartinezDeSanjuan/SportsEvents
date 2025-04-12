@@ -66,3 +66,6 @@ def athletes_list(request):
     athletes = Athlete.objects.all()
     return render(request, "athletes_list.html", {"athletes": athletes})
 
+@login_required
+def home(request):
+    return render(request, "home.html")

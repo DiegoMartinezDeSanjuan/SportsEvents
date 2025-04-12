@@ -24,20 +24,19 @@ from core.views import teams_list
 from core.views import team_detail
 from core.views import athlete_detail
 from core.views import athletes_list
-
+from core.views import home
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
     path('events/', events_list, name='events_list'),
-    path('', events_list, name='home'),  # redirige raíz a eventos
     path('events/<int:event_id>/', event_detail, name='event_detail'),
     path('teams/', teams_list, name='teams_list'),
     path('teams/<int:team_id>/', team_detail, name='team_detail'),
     path('athletes/<int:athlete_id>/', athlete_detail, name='athlete_detail'),
     path('athletes/', athletes_list, name='athletes_list'),
-
+    path('', home, name='home'),
 
 
 ]

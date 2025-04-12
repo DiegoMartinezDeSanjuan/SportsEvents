@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Bienvenido/a, {{ user.username }} 👋</h2>
+  <p>¿Qué te gustaría consultar?</p>
+
+  <ul>
+    <li><a href="{% url 'events_list' %}">📅 Ver eventos deportivos</a></li>
+    <li><a href="{% url 'teams_list' %}">👥 Ver equipos</a></li>
+    <li><a href="{% url 'athletes_list' %}">🏃 Ver atletas</a></li>
+  </ul>
+{% endblock %}
