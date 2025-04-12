@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ team.name }}</h2>
+  <p><strong>País:</strong> {{ team.country }}</p>
+  <p><strong>Deporte:</strong> {{ team.sport_type }}</p>
+
+  <h3>Eventos en los que participa</h3>
+  <ul>
+    {% for event in events %}
+      <li><a href="{% url 'event_detail' event.id %}">{{ event.name }}</a></li>
+    {% empty %}
+      <li>No participa en ningún evento.</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Atletas del equipo</h3>
+  <ul>
+    {% for athlete in athletes %}
+      <li><a href="{% url 'athlete_detail' athlete.id %}">{{ athlete.name }}</a></li>
+    {% empty %}
+      <li>No hay atletas en este equipo.</li>
+    {% endfor %}
+  </ul>
+
+  <p><a href="{% url 'teams_list' %}">← Volver a la lista de equipos</a></p>
+{% endblock %}

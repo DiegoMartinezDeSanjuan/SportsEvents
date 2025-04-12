@@ -5,6 +5,9 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 from .models import SportsEvent
+from .models import Team
+from .models import Athlete
+
 
 def register(request):
     if request.method == "POST":
@@ -32,3 +35,34 @@ def event_detail(request, event_id):
         "teams": teams,
         "athletes": athletes
     })
+
+@login_required
+def teams_list(request):
+    teams = Team.objects.all()
+    return render(request, "teams_list.html", {"teams": teams})
+
+@login_required
+def team_detail(request, team_id):
+    team = get_object_or_404(Team, id=team_id)
+    athletes = team.athletes.all()
+    events = team.events.all()
+    return render(request, "team_detail.html", {
+        "team": team,
+        "athletes": athletes,
+        "events": events
+    })
+
+@login_required
+def athlete_detail(request, athlete_id):
+    athlete = get_object_or_404(Athlete, id=athlete_id)
+    return render(request, "athlete_detail.html", {
+        "athlete": athlete,
+        "team": athlete.team,
+        "events": athlete.events.all()
+    })
+
+@login_required
+def athletes_list(request):
+    athletes = Athlete.objects.all()
+    return render(request, "athletes_list.html", {"athletes": athletes})
+

@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Equipos</h2>
+  <ul>
+    {% for team in teams %}
+      <li>
+        <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> ({{ team.country }})
+      </li>
+    {% empty %}
+      <li>No hay equipos disponibles.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

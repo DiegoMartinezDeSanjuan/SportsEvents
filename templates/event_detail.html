@@ -9,7 +9,7 @@
   <h3>Equipos participantes</h3>
   <ul>
     {% for team in teams %}
-      <li>{{ team.name }} ({{ team.country }})</li>
+      <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> ({{ team.country }})
     {% empty %}
       <li>No hay equipos registrados.</li>
     {% endfor %}
@@ -18,7 +18,7 @@
   <h3>Atletas participantes</h3>
   <ul>
     {% for athlete in athletes %}
-      <li>{{ athlete.name }} - {{ athlete.nationality }}</li>
+      <a href="{% url 'athlete_detail' athlete.id %}">{{ athlete.name }}</a> ({{ athlete.nationality }})
     {% empty %}
       <li>No hay atletas registrados.</li>
     {% endfor %}

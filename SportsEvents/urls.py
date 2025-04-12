@@ -20,6 +20,11 @@ from core.views import register
 from django.contrib.auth import views as auth_views
 from core.views import events_list
 from core.views import event_detail
+from core.views import teams_list
+from core.views import team_detail
+from core.views import athlete_detail
+from core.views import athletes_list
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', register, name='register'),
@@ -28,8 +33,10 @@ urlpatterns = [
     path('events/', events_list, name='events_list'),
     path('', events_list, name='home'),  # redirige raíz a eventos
     path('events/<int:event_id>/', event_detail, name='event_detail'),
-
-
+    path('teams/', teams_list, name='teams_list'),
+    path('teams/<int:team_id>/', team_detail, name='team_detail'),
+    path('athletes/<int:athlete_id>/', athlete_detail, name='athlete_detail'),
+    path('athletes/', athletes_list, name='athletes_list'),
 
 
 
