@@ -18,11 +18,20 @@ from django.contrib import admin
 from django.urls import path
 from core.views import register
 from django.contrib.auth import views as auth_views
-
+from core.views import events_list
+from core.views import event_detail
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', register, name='register'),
     path('login/', auth_views.LoginView.as_view(template_name='login.html'), name='login'),
     path('logout/', auth_views.LogoutView.as_view(next_page='login'), name='logout'),
+    path('events/', events_list, name='events_list'),
+    path('', events_list, name='home'),  # redirige raíz a eventos
+    path('events/<int:event_id>/', event_detail, name='event_detail'),
+
+
+
+
+
 ]
 

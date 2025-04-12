@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Eventos deportivos</h2>
+  <ul>
+    {% for event in events %}
+        <li>
+          <a href="{% url 'event_detail' event.id %}">
+            <strong>{{ event.name }}</strong>
+          </a> — {{ event.date }} en {{ event.location }} ({{ event.sport_type }})
+        </li>
+    {% empty %}
+      <li>No hay eventos deportivos registrados aún.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

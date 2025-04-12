@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ event.name }}</h2>
+  <p><strong>Fecha:</strong> {{ event.date }}</p>
+  <p><strong>Ubicación:</strong> {{ event.location }}</p>
+  <p><strong>Deporte:</strong> {{ event.sport_type }}</p>
+
+  <h3>Equipos participantes</h3>
+  <ul>
+    {% for team in teams %}
+      <li>{{ team.name }} ({{ team.country }})</li>
+    {% empty %}
+      <li>No hay equipos registrados.</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Atletas participantes</h3>
+  <ul>
+    {% for athlete in athletes %}
+      <li>{{ athlete.name }} - {{ athlete.nationality }}</li>
+    {% empty %}
+      <li>No hay atletas registrados.</li>
+    {% endfor %}
+  </ul>
+
+  <p><a href="{% url 'events_list' %}">← Volver a la lista</a></p>
+{% endblock %}
