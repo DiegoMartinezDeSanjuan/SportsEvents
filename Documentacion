@@ -1,0 +1,56 @@
+# Sports Events - Proyecto Django
+
+## 🔗 Repositorio público
+
+[https://github.com/DiegoMartinezDeSanjuan/SportsEvents](https://github.com/DiegoMartinezDeSanjuan/SportsEvents)
+
+## 👨‍💻 Miembros del equipo
+
+- Diego Martínez De Sanjuan
+- Alex Abashin
+- Sergi Pelegrí Buitrago
+
+## 📐 Decisiones de diseño
+
+- El modelo de datos incluye tres entidades principales: `SportsEvent`, `Team` y `Athlete`.
+- Las relaciones complejas se modelaron de esta manera:
+  - `SportsEvent <--> Team`: relación ManyToMany.
+  - `SportsEvent <--> Athlete`: relación ManyToMany.
+  - `Team --> Athlete`: relación OneToMany mediante ForeignKey.
+- Se utilizaron vistas basadas en funciones y templates para mostrar listas y detalles de los datos.
+- Se creó una página de inicio personalizada con navegación entre listas de entidades.
+- Se protegieron las vistas usando `@login_required` para garantizar que solo usuarios autenticados puedan acceder a los datos.
+- Se usó `UserCreationForm` para registrar usuarios y se habilitaron login/logout.
+
+## 🐳 Docker
+
+- Se incluye `Dockerfile` y `docker-compose.yml`.
+- El proyecto se puede levantar con `docker-compose up --build`.
+
+## 🔐 Autenticación
+
+- Registro de usuarios mediante formulario personalizado.
+- Redirección automática al login si el usuario no está autenticado.
+- Redirección al home después de hacer login.
+
+## ⚙️ Cómo ejecutar el proyecto
+
+### Requisitos
+
+- Docker y docker-compose instalados
+
+### Pasos
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/DiegoMartinezDeSanjuan/SportsEvents.git
+cd SportsEvents
+
+# Construir y ejecutar el proyecto
+docker-compose up --build
+Accede a la aplicación en http://localhost:8000
+
+📝 Reparto de nota
+
+Todos los miembros han contribuido de forma equitativa al desarrollo del proyecto.
+Se propone la misma nota para todos.
