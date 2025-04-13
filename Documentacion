@@ -4,13 +4,13 @@
 
 [https://github.com/DiegoMartinezDeSanjuan/SportsEvents]
 
-## 👨‍💻 Team Members
+##  Team Members
 
 - Diego Martínez De Sanjuan
 - Alex Abashin
 - Sergi Pelegrí Buitrago
 
-## 📐 Design Decisions
+##  Design Decisions
 
 - The data model includes 3 main entities: `SportsEvent`, `Team` and `Athlete`.
 - Complex relations were modeled as folows:
@@ -22,18 +22,18 @@
 - Views were protected using `@login_required` to ensure that onluy authenticated user can access the data.
 - `UserCreationForm` was used for user registration, and login/logout functionality was enabled.
 
-## 🐳 Docker
+##  Docker
 
 - Includes `Dockerfile` and `docker-compose.yml`.
 - The project can be launched with `docker-compose up --build`.
 
-## 🔐 Authentication
+##  Authentication
 
 - User registration via a custom form.
 - Automatic redirection to login if the user is not authenticated.
 - Redirection to the home page after logging in.
 
-## ⚙️ Hom to Run the Project
+## ️ Hom to Run the Project
 
 ### Requirements
 
@@ -50,7 +50,7 @@ cd SportsEvents
 docker-compose up --build
 #Access the aplication at http://localhost:8000
 
-📝 Grade Distribution
+## Grade Distribution
 
 All members contributed equally to the development of the project.
 It is proposed that all receive the same grade.
