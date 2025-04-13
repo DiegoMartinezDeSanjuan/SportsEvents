@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>Atletas</h2>
+  <h2>Athletes</h2>
   <ul>
     {% for athlete in athletes %}
       <li>
@@ -9,7 +9,7 @@
         — {{ athlete.nationality }} ({{ athlete.sport }})
       </li>
     {% empty %}
-      <li>No hay atletas registrados.</li>
+      <li>There ara no registered athletes.</li>
     {% endfor %}
   </ul>
 {% endblock %}
