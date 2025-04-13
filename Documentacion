@@ -13,13 +13,13 @@
 ##  Design Decisions
 
 - The data model includes 3 main entities: `SportsEvent`, `Team` and `Athlete`.
-- Complex relations were modeled as folows:
+- Complex relations were modeled as follows:
   - `SportsEvent <--> Team`: ManyToMany relation.
   - `SportsEvent <--> Athlete`: ManyToMany relation.
   - `Team --> Athlete`: OneToMany relation using ForeignKey.
 - Function-based and templates were used to display lists and details of the data.
 - A home page was created with navigation between entity lists.
-- Views were protected using `@login_required` to ensure that onluy authenticated user can access the data.
+- Views were protected using `@login_required` to ensure that only authenticated user can access the data.
 - `UserCreationForm` was used for user registration, and login/logout functionality was enabled.
 
 ##  Docker
@@ -37,7 +37,7 @@
 
 ### Requirements
 
-- Docker and docker-compose isntaled
+- Docker and docker-compose isntalled
 
 ### Steps
 
