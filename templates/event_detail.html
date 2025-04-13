@@ -2,27 +2,27 @@
 
 {% block content %}
   <h2>{{ event.name }}</h2>
-  <p><strong>Fecha:</strong> {{ event.date }}</p>
-  <p><strong>Ubicación:</strong> {{ event.location }}</p>
-  <p><strong>Deporte:</strong> {{ event.sport_type }}</p>
+  <p><strong>Date:</strong> {{ event.date }}</p>
+  <p><strong>Location:</strong> {{ event.location }}</p>
+  <p><strong>Sport:</strong> {{ event.sport_type }}</p>
 
-  <h3>Equipos participantes</h3>
+  <h3>Participating teams</h3>
   <ul>
     {% for team in teams %}
       <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> ({{ team.country }})
     {% empty %}
-      <li>No hay equipos registrados.</li>
+      <li>There ara no registered teams.</li>
     {% endfor %}
   </ul>
 
-  <h3>Atletas participantes</h3>
+  <h3>Participating athletes</h3>
   <ul>
     {% for athlete in athletes %}
       <a href="{% url 'athlete_detail' athlete.id %}">{{ athlete.name }}</a> ({{ athlete.nationality }})
     {% empty %}
-      <li>No hay atletas registrados.</li>
+      <li>There ara no registered athletes.</li>
     {% endfor %}
   </ul>
 
-  <p><a href="{% url 'events_list' %}">← Volver a la lista</a></p>
+  <p><a href="{% url 'events_list' %}">← Back to the list</a></p>
 {% endblock %}
