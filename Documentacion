@@ -1,56 +1,56 @@
 # Sports Events - Proyecto Django
 
-## 🔗 Repositorio público
+## 🔗 Public Repository
 
 [https://github.com/DiegoMartinezDeSanjuan/SportsEvents]
 
-## 👨‍💻 Miembros del equipo
+## 👨‍💻 Team Members
 
 - Diego Martínez De Sanjuan
 - Alex Abashin
 - Sergi Pelegrí Buitrago
 
-## 📐 Decisiones de diseño
+## 📐 Design Decisions
 
-- El modelo de datos incluye tres entidades principales: `SportsEvent`, `Team` y `Athlete`.
-- Las relaciones complejas se modelaron de esta manera:
-  - `SportsEvent <--> Team`: relación ManyToMany.
-  - `SportsEvent <--> Athlete`: relación ManyToMany.
-  - `Team --> Athlete`: relación OneToMany mediante ForeignKey.
-- Se utilizaron vistas basadas en funciones y templates para mostrar listas y detalles de los datos.
-- Se creó una página de inicio personalizada con navegación entre listas de entidades.
-- Se protegieron las vistas usando `@login_required` para garantizar que solo usuarios autenticados puedan acceder a los datos.
-- Se usó `UserCreationForm` para registrar usuarios y se habilitaron login/logout.
+- The data model includes 3 main entities: `SportsEvent`, `Team` and `Athlete`.
+- Complex relations were modeled as folows:
+  - `SportsEvent <--> Team`: ManyToMany relation.
+  - `SportsEvent <--> Athlete`: ManyToMany relation.
+  - `Team --> Athlete`: OneToMany relation using ForeignKey.
+- Function-based and templates were used to display lists and details of the data.
+- A home page was created with navigation between entity lists.
+- Views were protected using `@login_required` to ensure that onluy authenticated user can access the data.
+- `UserCreationForm` was used for user registration, and login/logout functionality was enabled.
 
 ## 🐳 Docker
 
-- Se incluye `Dockerfile` y `docker-compose.yml`.
-- El proyecto se puede levantar con `docker-compose up --build`.
+- Includes `Dockerfile` and `docker-compose.yml`.
+- The project can be launched with `docker-compose up --build`.
 
-## 🔐 Autenticación
+## 🔐 Authentication
 
-- Registro de usuarios mediante formulario personalizado.
-- Redirección automática al login si el usuario no está autenticado.
-- Redirección al home después de hacer login.
+- User registration via a custom form.
+- Automatic redirection to login if the user is not authenticated.
+- Redirection to the home page after logging in.
 
-## ⚙️ Cómo ejecutar el proyecto
+## ⚙️ Hom to Run the Project
 
-### Requisitos
+### Requirements
 
-- Docker y docker-compose instalados
+- Docker and docker-compose isntaled
 
-### Pasos
+### Steps
 
 ```bash
-# Clonar el repositorio
+# Clone the repository
 git clone https://github.com/DiegoMartinezDeSanjuan/SportsEvents.git
 cd SportsEvents
 
-# Construir y ejecutar el proyecto
+# Build and run the project
 docker-compose up --build
-Accede a la aplicación en http://localhost:8000
+#Access the aplication at http://localhost:8000
 
-📝 Reparto de nota
+📝 Grade Distribution
 
-Todos los miembros han contribuido de forma equitativa al desarrollo del proyecto.
-Se propone la misma nota para todos.
+All members contributed equally to the development of the project.
+It is proposed that all receive the same grade.
