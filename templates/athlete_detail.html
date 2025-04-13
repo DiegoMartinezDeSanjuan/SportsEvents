@@ -2,24 +2,24 @@
 
 {% block content %}
   <h2>{{ athlete.name }}</h2>
-  <p><strong>Edad:</strong> {{ athlete.age }}</p>
-  <p><strong>Nacionalidad:</strong> {{ athlete.nationality }}</p>
-  <p><strong>Deporte:</strong> {{ athlete.sport }}</p>
+  <p><strong>Age:</strong> {{ athlete.age }}</p>
+  <p><strong>Nationality:</strong> {{ athlete.nationality }}</p>
+  <p><strong>Sport:</strong> {{ athlete.sport }}</p>
 
   {% if team %}
-    <p><strong>Equipo:</strong> <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></p>
+    <p><strong>Team:</strong> <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></p>
   {% else %}
-    <p><em>Este atleta no está en ningún equipo.</em></p>
+    <p><em>This athlete is not in a team.</em></p>
   {% endif %}
 
-  <h3>Eventos en los que participa</h3>
+  <h3>Events in which he participates:</h3>
   <ul>
     {% for event in events %}
       <li><a href="{% url 'event_detail' event.id %}">{{ event.name }}</a></li>
     {% empty %}
-      <li>No participa en ningún evento.</li>
+      <li>Does not participate in any event.</li>
     {% endfor %}
   </ul>
 
-  <p><a href="{% url 'athletes_list' %}">← Volver a atletas</a></p>
+  <p><a href="{% url 'athletes_list' %}">← Back to athletes</a></p>
 {% endblock %}
