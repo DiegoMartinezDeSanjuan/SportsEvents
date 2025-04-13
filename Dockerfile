@@ -3,13 +3,13 @@ FROM python:3.11-slim
 
 WORKDIR /app
 
-# Primero copiamos las dependencias
+# Copy dependencies to requirements to do easier the future instalations
 
 COPY requirements.txt .
 RUN pip install --upgrade pip
-RUN pip install -r requirements.txt  #  Luego las instalamos
+RUN pip install -r requirements.txt # Instaling de dependencies
 
-# Finalmente, copiamos el resto del proyecto
+# Copy the entire project
 COPY . /app
 
 EXPOSE 8000
