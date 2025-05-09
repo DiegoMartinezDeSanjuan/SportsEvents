@@ -16,7 +16,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from core.views import register
+from core.views import register, SportsEventUpdateView, TeamUpdateView, AthleteUpdateView, \
+    SportsEventDeleteView, TeamDeleteView, AthleteDeleteView
 from django.contrib.auth import views as auth_views
 from core.views import events_list
 from core.views import event_detail
@@ -25,6 +26,7 @@ from core.views import team_detail
 from core.views import athlete_detail
 from core.views import athletes_list
 from core.views import home
+from core.views import SportsEventCreateView, TeamCreateView, AthleteCreateView
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('register/', register, name='register'),
@@ -37,6 +39,17 @@ urlpatterns = [
     path('athletes/<int:athlete_id>/', athlete_detail, name='athlete_detail'),
     path('athletes/', athletes_list, name='athletes_list'),
     path('', home, name='home'),
+    path('events/create/', SportsEventCreateView.as_view(), name='create_event'),
+    path('teams/create/', TeamCreateView.as_view(), name='create_team'),
+    path('athletes/create/', AthleteCreateView.as_view(), name='create_athlete'),
+    path('events/<int:pk>/edit/', SportsEventUpdateView.as_view(), name='edit_event'),
+    path('teams/<int:pk>/edit/', TeamUpdateView.as_view(), name='edit_team'),
+    path('athletes/<int:pk>/edit/', AthleteUpdateView.as_view(), name='edit_athlete'),
+
+    # Eliminación
+    path('events/<int:pk>/delete/', SportsEventDeleteView.as_view(), name='delete_event'),
+    path('teams/<int:pk>/delete/', TeamDeleteView.as_view(), name='delete_team'),
+    path('athletes/<int:pk>/delete/', AthleteDeleteView.as_view(), name='delete_athlete'),
 
 
 ]

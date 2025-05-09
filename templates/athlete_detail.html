@@ -21,5 +21,12 @@
     {% endfor %}
   </ul>
 
+  {% if user == athlete.creator %}
+    <p>
+      <a href="{% url 'edit_athlete' athlete.id %}">✏️ Editar</a> |
+      <a href="{% url 'delete_athlete' athlete.id %}">🗑️ Eliminar</a>
+    </p>
+  {% endif %}
+
   <p><a href="{% url 'athletes_list' %}">← Back to athletes</a></p>
 {% endblock %}

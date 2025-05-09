@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Crear Evento Deportivo</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Crear Evento</button>
+  </form>
+  <p><a href="{% url 'events_list' %}">← Volver a eventos</a></p>
+{% endblock %}

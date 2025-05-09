@@ -24,5 +24,13 @@
     {% endfor %}
   </ul>
 
+    <!-- Enlaces para editar y eliminar -->
+  {% if user == event.creator %}
+    <p>
+      <a href="{% url 'edit_event' event.id %}">✏️ Editar</a> |
+      <a href="{% url 'delete_event' event.id %}">🗑️ Eliminar</a>
+    </p>
+  {% endif %}
+
   <p><a href="{% url 'events_list' %}">← Back to the list</a></p>
 {% endblock %}

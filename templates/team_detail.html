@@ -22,6 +22,12 @@
       <li>There are no athletes on this team.</li>
     {% endfor %}
   </ul>
+  {% if user == team.creator %}
+    <p>
+      <a href="{% url 'edit_team' team.id %}">✏️ Editar</a> |
+      <a href="{% url 'delete_team' team.id %}">🗑️ Eliminar</a>
+    </p>
+  {% endif %}
 
   <p><a href="{% url 'teams_list' %}">← Back to the list</a></p>
 {% endblock %}

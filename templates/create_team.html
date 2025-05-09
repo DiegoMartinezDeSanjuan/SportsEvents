@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Crear Equipo</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Crear Equipo</button>
+  </form>
+  <p><a href="{% url 'teams_list' %}">← Volver a equipos</a></p>
+{% endblock %}
