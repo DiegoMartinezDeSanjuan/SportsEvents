@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ athlete.name }}</h2>
+  <p><strong>Age:</strong> {{ athlete.age }}</p>
+  <p><strong>Nationality:</strong> {{ athlete.nationality }}</p>
+  <p><strong>Sport:</strong> {{ athlete.sport }}</p>
+
+  {% if team %}
+    <p><strong>Team:</strong> <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a></p>
+  {% else %}
+    <p><em>This athlete is not in a team.</em></p>
+  {% endif %}
+
+  <h3>Events in which he participates:</h3>
+  <ul>
+    {% for event in events %}
+      <li><a href="{% url 'event_detail' event.id %}">{{ event.name }}</a></li>
+    {% empty %}
+      <li>Does not participate in any event.</li>
+    {% endfor %}
+  </ul>
+
+  {% if user == athlete.creator %}
+    <p>
+      <a href="{% url 'edit_athlete' athlete.id %}">✏️ Editar</a> |
+      <a href="{% url 'delete_athlete' athlete.id %}">🗑️ Eliminar</a>
+    </p>
+  {% endif %}
+
+  <p><a href="{% url 'athletes_list' %}">← Back to athletes</a></p>
+{% endblock %}

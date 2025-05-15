@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Sports Events</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+{% if request.resolver_match.url_name != 'home' %}
+  <nav>
+    <ul style="list-style: none; display: flex; gap: 15px; padding: 10px; border-bottom: 1px solid #ccc;">
+      <li><a href="{% url 'home' %}">🏠 Home</a></li>
+      <li><a href="{% url 'events_list' %}">📅 Events</a></li>
+      <li><a href="{% url 'teams_list' %}">👥 Teams</a></li>
+      <li><a href="{% url 'athletes_list' %}">🏃 Athletes</a></li>
+      {% if user.is_authenticated %}
+        <li style="margin-left:auto;">Hi, {{ user.username }} | <a href="{% url 'logout' %}">Logout</a></li>
+      {% else %}
+        <li style="margin-left:auto;"><a href="{% url 'login' %}">Login</a> | <a href="{% url 'register' %}">Register</a></li>
+      {% endif %}
+    </ul>
+  </nav>
+{% endif %}
+
+  {% block content %}{% endblock %}
+</body>
+</html>

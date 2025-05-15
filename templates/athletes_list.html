@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>Athletes</h2>
+  <ul>
+    {% for athlete in athletes %}
+      <li>
+        <a href="{% url 'athlete_detail' athlete.id %}">{{ athlete.name }}</a>
+        — {{ athlete.nationality }} ({{ athlete.sport }})
+      </li>
+    {% empty %}
+      <li>There ara no registered athletes.</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

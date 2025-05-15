@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <h2>{{ event.name }}</h2>
+  <p><strong>Date:</strong> {{ event.date }}</p>
+  <p><strong>Location:</strong> {{ event.location }}</p>
+  <p><strong>Sport:</strong> {{ event.sport_type }}</p>
+
+  <h3>Participating teams</h3>
+  <ul>
+    {% for team in teams %}
+      <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> ({{ team.country }})
+    {% empty %}
+      <li>There ara no registered teams.</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Participating athletes</h3>
+  <ul>
+    {% for athlete in athletes %}
+      <a href="{% url 'athlete_detail' athlete.id %}">{{ athlete.name }}</a> ({{ athlete.nationality }})
+    {% empty %}
+      <li>There ara no registered athletes.</li>
+    {% endfor %}
+  </ul>
+
+    <!-- Enlaces para editar y eliminar -->
+  {% if user == event.creator %}
+    <p>
+      <a href="{% url 'edit_event' event.id %}">✏️ Editar</a> |
+      <a href="{% url 'delete_event' event.id %}">🗑️ Eliminar</a>
+    </p>
+  {% endif %}
+
+  <p><a href="{% url 'events_list' %}">← Back to the list</a></p>
+{% endblock %}
