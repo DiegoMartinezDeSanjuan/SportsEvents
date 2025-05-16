@@ -1,0 +1,51 @@
+## Deliverable 2 - Web 2.0 Application Development
+
+### 1. GitHub Repository
+
+* Repository URL: https://github.com/DiegoMartinezDeSanjuan/SportsEvents
+* The codebase, including the `db.sqlite3` file, has been committed to facilitate testing.
+
+### 2. Admin User and Test Users
+
+* **Admin User:**
+
+  * **Username:** admin
+  * **Password:** admin
+* **Test User:**
+
+  * **Username:** didi
+  * **Password:** PATATA123
+
+### 3. Design Decisions and Model Changes
+
+#### 3.1 Model Enhancements
+
+* **Athlete Model:** Added a new `creator` field to link athletes to the user who created them, ensuring only the creator can modify or delete their instances.
+* **Team Model:** No significant structural changes, but integrated with the `Athlete` model to allow automatic assignment of athletes to teams.
+* **SportsEvent Model:** Now supports the association of both teams and individual athletes at the time of creation.
+
+#### 3.2 Form Improvements
+
+* **AthleteForm:**
+
+  * Added custom widget for the `nationality` field to enable autocomplete with external country data using the REST Countries API.
+  * Implemented client-side validation using AJAX for a more dynamic user experience.
+
+#### 3.3 UI Enhancements
+
+* Integrated jQuery to support real-time form validation and data fetching.
+* Added autocomplete functionality for nationality fields with custom styling.
+
+#### 3.4 External API Integration
+
+* Implemented dynamic country suggestions for the `nationality` field using the [REST Countries API](https://restcountries.com/) to improve the user experience when creating athletes.
+
+### 4. Testing and Next Steps
+
+* **End-to-End (E2E) Tests:**
+
+  * We encountered some obstacles we couldn't overcome when implementing the tests, so they are not available.
+
+###
+
+---
