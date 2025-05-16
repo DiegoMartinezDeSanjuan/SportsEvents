@@ -2,6 +2,7 @@
 <html>
 <head>
   <title>Sports Events</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 {% if request.resolver_match.url_name != 'home' %}
@@ -21,5 +22,4 @@
 {% endif %}
   {% block content %}{% endblock %}
 </body>
-
 </html>

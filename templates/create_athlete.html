@@ -2,10 +2,91 @@
 
 {% block content %}
   <h2>Crear Atleta</h2>
-  <form method="post">
+  <form method="post" autocomplete="off" style="position: relative;">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit">Crear Atleta</button>
   </form>
+
+  <p style="color: gray; font-size: 0.9em;">Empieza a escribir la nacionalidad (ej. "Fr", "Ru", "Br")</p>
+
+  <style>
+    .suggestion-box {
+      border: 1px solid #ccc;
+      max-height: 150px;
+      overflow-y: auto;
+      position: absolute;
+      background: white;
+      width: 250px;
+      z-index: 1000;
+    }
+
+    .suggestion-box div {
+      padding: 5px;
+      cursor: pointer;
+    }
+
+    .suggestion-box div:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
+
+  <script>
+    $(document).ready(function () {
+      console.log("Autocomplete ready");
+
+      const $input = $(".autocomplete-country");
+      const $box = $("<div class='suggestion-box'></div>").insertAfter($input);
+      $box.hide();
+
+      $input.on("input", function () {
+        const query = $(this).val();
+        if (query.length < 2) {
+          $box.hide();
+          return;
+        }
+
+        $.ajax({
+          url: `https://restcountries.com/v3.1/name/${query}`,
+          method: "GET",
+          success: function (data) {
+            $box.empty();
+            const suggestions = data.map(c => c.name.common).slice(0, 5);
+
+            if (suggestions.length === 0) {
+              $box.hide();
+              return;
+            }
+
+            suggestions.forEach(name => {
+              $box.append(`<div>${name}</div>`);
+            });
+
+            const inputOffset = $input.offset();
+            $box.css({
+              top: $input.position().top + $input.outerHeight(),
+              left: $input.position().left,
+            });
+
+            $box.show();
+          },
+          error: function () {
+            $box.hide();
+          }
+        });
+      });
+
+      $box.on("click", "div", function () {
+        $input.val($(this).text());
+        $box.hide();
+      });
+
+      $(document).on("click", function (e) {
+        if (!$(e.target).closest(".autocomplete-country, .suggestion-box").length) {
+          $box.hide();
+        }
+      });
+    });
+  </script>
   <p><a href="{% url 'athletes_list' %}">← Volver a atletas</a></p>
 {% endblock %}

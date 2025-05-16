@@ -26,7 +26,6 @@ class SportsEventForm(forms.ModelForm):
         model = SportsEvent
         fields = ["name", "date", "location", "sport_type", "teams", "athletes"]
 
-
 class TeamForm(forms.ModelForm):
     athletes = forms.ModelMultipleChoiceField(
         queryset=Athlete.objects.all(),
@@ -42,3 +41,10 @@ class AthleteForm(forms.ModelForm):
     class Meta:
         model = Athlete
         fields = ["name", "age", "nationality", "sport", "team"]
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['nationality'].widget.attrs.update({
+            'class': 'autocomplete-country',
+            'autocomplete': 'off'
+        })
