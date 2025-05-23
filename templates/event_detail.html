@@ -1,36 +1,60 @@
 {% extends 'base.html' %}
 
 {% block content %}
-  <h2>{{ event.name }}</h2>
-  <p><strong>Date:</strong> {{ event.date }}</p>
-  <p><strong>Location:</strong> {{ event.location }}</p>
-  <p><strong>Sport:</strong> {{ event.sport_type }}</p>
+  <div vocab="https://schema.org/" typeof="SportsEvent">
+    <h2 property="name">{{ event.name }}</h2>
 
-  <h3>Participating teams</h3>
-  <ul>
-    {% for team in teams %}
-      <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a> ({{ team.country }})
-    {% empty %}
-      <li>There ara no registered teams.</li>
-    {% endfor %}
-  </ul>
-
-  <h3>Participating athletes</h3>
-  <ul>
-    {% for athlete in athletes %}
-      <a href="{% url 'athlete_detail' athlete.id %}">{{ athlete.name }}</a> ({{ athlete.nationality }})
-    {% empty %}
-      <li>There ara no registered athletes.</li>
-    {% endfor %}
-  </ul>
-
-    <!-- Enlaces para editar y eliminar -->
-  {% if user == event.creator %}
-    <p>
-      <a href="{% url 'edit_event' event.id %}">✏️ Editar</a> |
-      <a href="{% url 'delete_event' event.id %}">🗑️ Eliminar</a>
+    <p><strong>Date:</strong>
+      <time property="startDate" datetime="{{ event.date|date:'Y-m-d' }}">{{ event.date }}</time>
     </p>
-  {% endif %}
 
-  <p><a href="{% url 'events_list' %}">← Back to the list</a></p>
+    <p><strong>Location:</strong>
+      <span property="location" typeof="Place">
+        <span property="name">{{ event.location }}</span>
+      </span>
+    </p>
+
+    <p><strong>Sport:</strong>
+      <span property="sport">{{ event.sport_type }}</span>
+    </p>
+
+    <h3>Participating teams</h3>
+    <ul>
+      {% for team in teams %}
+        <li property="competitor" typeof="SportsTeam">
+          <a href="{% url 'team_detail' team.id %}">{{ team.name }}</a>
+          (<span property="location" typeof="Place">
+              <span property="name">{{ team.country }}</span>
+          </span>)
+          <span property="name" style="display:none;">{{ team.name }}</span>
+        </li>
+      {% empty %}
+        <li>No hay equipos registrados.</li>
+      {% endfor %}
+    </ul>
+
+    <h3>Participating athletes</h3>
+    <ul>
+      {% for athlete in athletes %}
+        <li property="performer" typeof="Person">
+          <a href="{% url 'athlete_detail' athlete.id %}">{{ athlete.name }}</a>
+          (<span property="nationality" typeof="Country">
+              <span property="name">{{ athlete.nationality }}</span>
+          </span>)
+          <span property="name" style="display:none;">{{ athlete.name }}</span>
+        </li>
+      {% empty %}
+        <li>No hay atletas registrados.</li>
+      {% endfor %}
+    </ul>
+
+    {% if user == event.creator %}
+      <p>
+        <a href="{% url 'edit_event' event.id %}">✏️ Editar</a> |
+        <a href="{% url 'delete_event' event.id %}">🗑️ Eliminar</a>
+      </p>
+    {% endif %}
+
+    <p><a href="{% url 'events_list' %}">← Back to the list</a></p>
+  </div>
 {% endblock %}
